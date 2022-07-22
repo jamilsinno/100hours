@@ -9,7 +9,7 @@ app.listen(3000, function(){
     console.log('listening on 3000')
 })
 
-MongoClient.connect('mongodb+srv://yoda:Forcebewithyou@cluster0.kij4yep.mongodb.net/?retryWrites=true&w=majority',
+MongoClient.connect('',
 {useUnifiedTopology: true})
     .then( client => {
         app.set('view engine', 'ejs')
