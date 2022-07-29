@@ -49,7 +49,7 @@ app.post('/addGames', async (req, res) => {
     }
 })
 
-//UPDATE
+//UPDATE move item to completion
 app.put('/markComplete', async (req,res) => {
     try{
         const data = await db.collection(dbName).updateOne(
@@ -63,6 +63,24 @@ app.put('/markComplete', async (req,res) => {
         catch(err){
             console.log(err)
         }
+})
+
+//UPDATE move item back to unplayed
+app.put('/replayGame', async (req,res) => {
+    try{
+        const data = await db.collection(dbName).updateOne({
+            gameName: req.body.gameToReplay},
+            {
+                $set: {
+                    completion: false,
+                }
+            })
+        console.log('Updated')
+        res.json('Marked uncomplete')
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 
 //DE LAY TAY

@@ -1,5 +1,6 @@
 const delaytay = document.querySelectorAll('.fa-trash')
 const updateCompletion = document.querySelectorAll('.fa-check')
+const replay = document.querySelectorAll('.fa-backward')
 
 Array.from(delaytay).forEach( (el) => {
     el.addEventListener('click', delaytayItem)
@@ -7,6 +8,10 @@ Array.from(delaytay).forEach( (el) => {
 
 Array.from(updateCompletion).forEach(
     (el) => el.addEventListener('click', markCompletion)
+)
+
+Array.from(replay).forEach(
+    el => el.addEventListener('click', replayGame)
 )
 
 async function delaytayItem() {
@@ -46,6 +51,27 @@ async function markCompletion(){
         location.reload()
     }
     catch(err){
+        console.log(err)
+    }
+}
+
+async function replayGame(){
+    console.log('click replay')
+    const gameName = this.parentNode.childNodes[3].innerText
+    console.log(gameName)
+
+    try{
+        const res = await fetch('replayGame', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'gameToReplay': gameName
+            })
+        })
+        const data = res.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
         console.log(err)
     }
 }
