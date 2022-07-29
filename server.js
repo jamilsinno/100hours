@@ -1,48 +1,79 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
+const PORT = 3000
 
-app.use(bodyParser.urlencoded({ extended: true }))
+require('dotenv').config()
 
-app.listen(3000, function(){
-    console.log('listening on 3000')
+let db,
+    dbConnectionStr = process.env.DB_STRING,
+    dbName = 'games'
+
+
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+.then(client => {
+    // let the user know connection to the DB is successful
+    console.log(`Connected to ${dbName} Database`)
+    // store your whole database into a variable
+    db = client.db(dbName)
 })
 
-MongoClient.connect('',
-{useUnifiedTopology: true})
-    .then( client => {
-        app.set('view engine', 'ejs')
-        
+//Middleware
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
-        console.log('Conneted to DB')
-        const db = client.db('star-wars-quotes')
-        const quotesCollection = db.collection('quotes')
+// READ
+app.get('/', async (req, res) => {
+    try{
+        const games = await db.collection(dbName).find().sort({gameName: 1}).toArray()
+        res.render('index.ejs', {gameName: games})
+    }
+    catch (err){
+        console.log(err)
+    }
+})
 
-        app.get('/', (req,res) => {
-            res.sendFile(__dirname + '/index.html')
+//CREATE
+app.post('/addGames', async (req, res) => {
+    try{
+        db.collection(dbName).insertOne({
+            gameName: req.body.gameName, 
+            completion: false,
         })
-        
-        app.get('/', (req, res) =>{
-            const cursor = db.collection('quotes').find().toArray()
-                .then( results => {
-                    res.render('index.ejs', {quote: results})
-                    console.log(results)
-                })
-                .catch(err => console.error(err))
-                console.log(cursor)
-        })
-        
-        app.post('/quotes', (req, res) => {
-            quotesCollection.insertOne(req.body)
-                .then(result => {
-                    res.redirect('/')
-                })
-                .catch(err => console.error(err))
-        })
-    })
-    .catch( err => console.error(err))
+        res.redirect('/')
+    }
+    catch(err){
+        console.log(err)
+    }
+})
 
+//UPDATE
+app.put('/markComplete', async (req,res) => {
+    try{
+        const data = await db.collection(dbName).updateOne(
+            {gameName: req.body.gameToUpdate},
+            {$set: {
+                completion: true,
+            }})
+            console.log('Updated')
+            res.json('Marked complete')
+        }
+        catch(err){
+            console.log(err)
+        }
+})
+
+//DE LAY TAY
+app.delete('/delaytayItem', async (req, res) => {
+    await db.collection(dbName).deleteOne({gameName: req.body.gameToDelaytay})
+    res.json('Game delaytayed')
+})
+
+app.listen(process.env.PORT || PORT, ()=>{
+    console.log(`Server running on port ${PORT}`)
+})
 
 
 
