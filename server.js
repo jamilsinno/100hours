@@ -41,12 +41,29 @@ app.post('/addGames', async (req, res) => {
         db.collection(dbName).insertOne({
             gameName: req.body.gameName, 
             completion: false,
+            playing: false,
         })
         res.redirect('/')
     }
     catch(err){
         console.log(err)
     }
+})
+
+//UPDATE move item to playing
+app.put('/markPlaying', async (req,res) => {
+    try{
+        const data = await db.collection(dbName).updateOne(
+            {gameName: req.body.gameToPlay},
+            {$set: {
+                playing: true,
+            }})
+            console.log('Updated')
+            res.json('Marked complete')
+        }
+        catch(err){
+            console.log(err)
+        }
 })
 
 //UPDATE move item to completion
@@ -73,6 +90,7 @@ app.put('/replayGame', async (req,res) => {
             {
                 $set: {
                     completion: false,
+                    playing: false,
                 }
             })
         console.log('Updated')

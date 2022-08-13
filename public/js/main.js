@@ -1,6 +1,7 @@
 const delaytay = document.querySelectorAll('.fa-trash')
 const updateCompletion = document.querySelectorAll('.fa-check')
 const replay = document.querySelectorAll('.fa-backward')
+const playing = document.querySelectorAll('.fa-play')
 
 Array.from(delaytay).forEach( (el) => {
     el.addEventListener('click', delaytayItem)
@@ -12,6 +13,10 @@ Array.from(updateCompletion).forEach(
 
 Array.from(replay).forEach(
     el => el.addEventListener('click', replayGame)
+)
+
+Array.from(playing).forEach(
+    el => el.addEventListener('click', markPlaying)
 )
 
 async function delaytayItem() {
@@ -44,6 +49,27 @@ async function markCompletion(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'gameToUpdate': gameName
+            })
+          })
+        const data = await res.json()
+        console.log(data)
+        location.reload()
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+async function markPlaying(){
+    console.log('click playing')
+    const gameName = this.parentNode.childNodes[3].innerText
+    console.log(gameName)
+    try{
+        const res = await fetch('markPlaying', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'gameToPlay': gameName
             })
           })
         const data = await res.json()

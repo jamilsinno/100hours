@@ -1,0 +1,31 @@
+/* Globals */
+html{
+    font-size: 62.5%;
+}
+
+ul{
+    padding: 0;
+}
+
+li{
+    list-style: none;
+    display:flex;
+    justify-content: space-around;
+}
+
+
+/* Containers */
+.container{
+    padding-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid black;
+}
+
+.gameContainer{
+    border: 1px solid black;
+    padding: 1em 2.5em;
+    border-radius: 0.5em;
+    box-shadow: 0.3em 0.3em 0.2em black;
+}
