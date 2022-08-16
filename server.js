@@ -42,6 +42,7 @@ app.post('/addGames', async (req, res) => {
             gameName: req.body.gameName, 
             completion: false,
             playing: false,
+            favorite: false,
         })
         res.redirect('/')
     }
@@ -95,6 +96,42 @@ app.put('/replayGame', async (req,res) => {
             })
         console.log('Updated')
         res.json('Marked uncomplete')
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
+//UPDATE Make the game a favorite
+app.put('/favoriteGame', async (req,res) => {
+    try{
+        const data = await db.collection(dbName).updateOne({
+            gameName: req.body.gameToFavorite},
+            {
+                $set: {
+                    favorite: true,
+                }
+            })
+        console.log('Updated')
+        res.json('Marked favorite')
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
+//UPDATE Make the game unfavorite
+app.put('/unfavoriteGame', async (req,res) => {
+    try{
+        const data = await db.collection(dbName).updateOne({
+            gameName: req.body.gameToUnfavorite},
+            {
+                $set: {
+                    favorite: false,
+                }
+            })
+        console.log('Updated')
+        res.json('Marked unfavorite')
     }
     catch(err){
         console.log(err)

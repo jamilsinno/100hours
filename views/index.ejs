@@ -16,6 +16,18 @@
         <button type="submit">Submit</button>
     </form>
     
+    <section>
+      <h6>Sort games</h6>
+      <form action="/sortGame">
+        <select name="sortOption" id="sortOption">
+          <option value="Select">Select</option>
+          <option value="gameName">Name</option>
+          <option value="favorite">Favorite</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
     <section class="container">
       <section class="gameContainer">
         <h2>Currently playing</h2>
@@ -56,14 +68,24 @@
         <h2>Completed games</h2>
         <!-- Loop through games -->
           <% for(var i = 0; i < gameName.length; i++) {%>
-            <% if(gameName[i].completion === true) { %>
+            <% if(gameName[i].completion === true && gameName[i].favorite === false) { %>
               <li>
                 <!-- Output name from the iterated quote object -->
                 <span><%= gameName[i].gameName %></span>
                 <span class='fa fa-backward'></span>
+                <span class='fa fa-star'></span>
                 <span class='fa fa-trash'></span>
               </li>
-            <% } %>
+            <% }%>
+            <% if(gameName[i].completion === true && gameName[i].favorite === true) { %>
+              <li>
+                <!-- Output name from the iterated quote object -->
+                <span><%= gameName[i].gameName %></span>
+                <span class='fa fa-backward'></span>
+                <span class='fa fa-star-half'></span>
+                <span class='fa fa-trash'></span>
+              </li>
+            <% }%>
           <% } %>
       </section>
     </section>

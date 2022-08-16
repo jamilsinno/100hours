@@ -15,8 +15,9 @@ Application is created using CRUD operations, express and EJS. The inspiration b
 List of optimizations in no specific order:
  - Add styling to the application
  - Add user authentication
- - Add favourite games
+ - Add favourite games. - COMPLETE
  - Add Thumbs up and Thumbs down features.
+ - Sort based on favorite or name. 
 
 ## Lessons Learned:
 
