@@ -17,7 +17,7 @@ List of optimizations in no specific order:
  - Add user authentication
  - Add favourite games. - COMPLETE
  - Add Thumbs up and Thumbs down features.
- - Sort based on favorite or name. 
+ - Sort based on favorite or name. - IN PROGRESS
 
 ## Lessons Learned:
 
