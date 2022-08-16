@@ -1,5 +1,5 @@
 const express = require('express')
-const methodOverride = require('method-override')
+// const methodOverride = require('method-override')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 3000
@@ -24,12 +24,12 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
 
 // READ
 app.get('/', async (req, res) => {
     try{
-        const games = await db.collection(dbName).find().sort({gameName: 1}).toArray()
+        const games = await db.collection(dbName).find().sort({favorite: -1, gameName: 1}).toArray()
         res.render('index.ejs', {gameName: games})
     }
     catch (err){
