@@ -1,154 +1,46 @@
 const express = require('express')
-// const methodOverride = require('method-override')
 const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 3000
+const mongoose = require('mongoose')
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const flash = require('express-flash')
+const logger = require('morgan')
+const connectDB = require('./config/database')
+const mainRoutes = require('./routes/main')
+const todoRoutes = require('./routes/todos')
 
-require('dotenv').config()
+require('dotenv').config({path: './config/.env'})
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'games'
+// Passport config
+require('./config/passport')(passport)
 
+connectDB()
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-.then(client => {
-    // let the user know connection to the DB is successful
-    console.log(`Connected to ${dbName} Database`)
-    // store your whole database into a variable
-    db = client.db(dbName)
-})
-
-//Middleware
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use(methodOverride('_method'))
+app.use(logger('dev'))
+// Sessions
+app.use(
+    session({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: false,
+      store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
+  )
+  
+// Passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
 
-// READ
-app.get('/', async (req, res) => {
-    try{
-        const games = await db.collection(dbName).find().sort({favorite: -1, gameName: 1}).toArray()
-        res.render('index.ejs', {gameName: games})
-    }
-    catch (err){
-        console.log(err)
-    }
-})
-
-//CREATE
-app.post('/addGames', async (req, res) => {
-    try{
-        db.collection(dbName).insertOne({
-            gameName: req.body.gameName, 
-            completion: false,
-            playing: false,
-            favorite: false,
-        })
-        res.redirect('/')
-    }
-    catch(err){
-        console.log(err)
-    }
-})
-
-//UPDATE move item to playing
-app.put('/markPlaying', async (req,res) => {
-    try{
-        const data = await db.collection(dbName).updateOne(
-            {gameName: req.body.gameToPlay},
-            {$set: {
-                playing: true,
-            }})
-            console.log('Updated')
-            res.json('Marked complete')
-        }
-        catch(err){
-            console.log(err)
-        }
-})
-
-//UPDATE move item to completion
-app.put('/markComplete', async (req,res) => {
-    try{
-        const data = await db.collection(dbName).updateOne(
-            {gameName: req.body.gameToUpdate},
-            {$set: {
-                completion: true,
-            }})
-            console.log('Updated')
-            res.json('Marked complete')
-        }
-        catch(err){
-            console.log(err)
-        }
-})
-
-//UPDATE move item back to unplayed
-app.put('/replayGame', async (req,res) => {
-    try{
-        const data = await db.collection(dbName).updateOne({
-            gameName: req.body.gameToReplay},
-            {
-                $set: {
-                    completion: false,
-                    playing: false,
-                }
-            })
-        console.log('Updated')
-        res.json('Marked uncomplete')
-    }
-    catch(err){
-        console.log(err)
-    }
-})
-
-//UPDATE Make the game a favorite
-app.put('/favoriteGame', async (req,res) => {
-    try{
-        const data = await db.collection(dbName).updateOne({
-            gameName: req.body.gameToFavorite},
-            {
-                $set: {
-                    favorite: true,
-                }
-            })
-        console.log('Updated')
-        res.json('Marked favorite')
-    }
-    catch(err){
-        console.log(err)
-    }
-})
-
-//UPDATE Make the game unfavorite
-app.put('/unfavoriteGame', async (req,res) => {
-    try{
-        const data = await db.collection(dbName).updateOne({
-            gameName: req.body.gameToUnfavorite},
-            {
-                $set: {
-                    favorite: false,
-                }
-            })
-        console.log('Updated')
-        res.json('Marked unfavorite')
-    }
-    catch(err){
-        console.log(err)
-    }
-})
-
-//DE LAY TAY
-app.delete('/delaytayItem', async (req, res) => {
-    await db.collection(dbName).deleteOne({gameName: req.body.gameToDelaytay})
-    res.json('Game delaytayed')
-})
-
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
-
-
-
+app.use(flash())
+  
+app.use('/', mainRoutes)
+app.use('/todos', todoRoutes)
+ 
+app.listen(process.env.PORT, ()=>{
+    console.log('Server is running, you better catch it!')
+})    

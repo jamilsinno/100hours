@@ -1,24 +1,44 @@
-# My Unplayed Steam Library
-A full stack application built using CRUD operations to track your unplayed steam library.
+# Introduction
 
-<!-- **Link to project:** http://recruiters-love-seeing-live-demos.com/ -->
+A Simple ToDo App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
 
-<!-- ![alt tag](http://placecorgi.com/1200/650) -->
+---
 
-## How It's Made:
+> Be sure to add that lovely star 😀 and fork it for your own copy
 
-**Tech used:** HTML, CSS, JavaScript, Express, Node, EJS & MongoDB
+---
 
-Application is created using CRUD operations, express and EJS. The inspiration behind this project was to track my unplayed stream library. The application currently has users input their list items and then manipulate the items based on completion, games currently being played and the want to replay.
+# Objectives
 
-## Optimizations
-List of optimizations in no specific order:
- - Add styling to the application
- - Add user authentication
- - Add favourite games. - COMPLETE
- - Add Thumbs up and Thumbs down features.
- - Sort based on favorite - COMPLETE 
+- It's a beginner level app created to understand how MVC concept and logins are added
 
-## Lessons Learned:
+---
 
-As the project continues to grow, I continue to learn about structuring my code and making things cohesive. Currently working on my pseudo code to make navigating the larger files easier. Applying MVC to work with industry standards.
+# Who is this for? 
+
+- It's for beginners & intermediates with little more experience, to help understand the various aspects of building a node app with some complex features
+
+---
+
+# Packages/Dependencies used 
+
+bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
+
+---
+
+# Install all the dependencies or node packages used for development via Terminal
+
+`npm install` 
+
+---
+
+# Things to add
+
+- Create a `.env` file and add the following as `key: value` 
+  - PORT: 2121 (can be any port example: 3000) 
+  - DB_STRING: `your database URI` 
+ ---
+ 
+ Have fun testing and improving it! 😎
+
+
