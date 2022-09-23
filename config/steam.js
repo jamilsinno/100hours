@@ -13,14 +13,14 @@ passport.use(new SteamStrategy({
     console.log(profile)
 
     const newUser ={
-      _id: profile.id,
+      steamId: profile.id,
       displayName: profile.displayName,
       profileURL: profile.url,
       avatar: profile.avatar,
     }
 
     try{
-      let user = await User.findOne({ openId: identifier })
+      let user = await User.findOne({ steamId: profile.id })
       if (user) {
         done(null, user)
       } else {
@@ -36,7 +36,7 @@ passport.use(new SteamStrategy({
 
 passport.serializeUser((user, done) => {
   console.log(user)
-  done(null, user._id);
+  done(null, user.id);
 })
 
 // passport.deserializeUser((user, done) => {

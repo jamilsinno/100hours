@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
-  _id: { type: String, unique: true },
+  steamId: { type: String, unique: true },
   displayName: {type: String},
   profileURL: {type: String},
   avatar: {type: String}
