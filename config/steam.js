@@ -15,8 +15,10 @@ passport.use(new SteamStrategy({
     const newUser ={
       steamId: profile.id,
       displayName: profile.displayName,
-      profileURL: profile.url,
-      avatar: profile.avatar,
+      profileURL: profile._json.profileurl,
+      avatar: profile._json.avatar,
+      avatarMedium: profile._json.avatarmedium,
+      avatarFull: profile._json.avatarfull,
     }
 
     try{
