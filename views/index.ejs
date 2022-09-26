@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Index</title>
 </head>
 <body>
-    <%- include('partials/header') %>
-    <h1>Create Your VERY OWN Steam Completion List!</h1>
-    <a href="/auth/steam"><img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_01.png" alt="Steam login"></a>
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Create Your VERY OWN Steam Completion List!</h1>
+            <p class="py-6">Login to your Steam profile, track your games, see your achievements and select what to achieve next!</p>
+            <!-- <button class="btn btn-primary">Get Started</button> -->
+            <a href="/auth/steam" class="btn btn-ghost"><img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_01.png" alt="Steam login"></a>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
