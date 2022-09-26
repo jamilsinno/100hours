@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row">
+          <img src="<%= user.avatarFull %>" class="max-w-sm rounded-lg shadow-2xl" />
+          <div>
+            <h1 class="text-5xl font-bold">Welcome to your dashboard, <%= user.displayName %>!</h1>
+            <h4 class="text-2xl font-bold">Current status:</h4>
+            <% if ( user.personaState === 0) { %>
+                <section class="statusContainer">
+                    <p>Offline</p>
+                </section>
+            <% } else { %>
+                <section class="statusContainer">
+                    <p>Online</p>
+                </section>
+            <% } %>
+            <h4 class="text-2xl font-bold">Total Games Owned:</h4>
+            <p><%= user.gameCount %></p>
+            <a href="<%= user.profileURL %>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit Steam Page <img src="/images/steam.svg"/></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <% for (let i = 0; i<user.games; i++) {%>
+            <p><%= user.games[i] %></p>
+        <% } %>
+      </div>
+</body>
+</html>

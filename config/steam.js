@@ -10,7 +10,7 @@ passport.use(new SteamStrategy({
     stateless: true,
   }, 
   async function(identifier, profile, done) {
-    console.log(profile)
+    // console.log(profile)
 
     const newUser ={
       steamId: profile.id,
@@ -19,11 +19,13 @@ passport.use(new SteamStrategy({
       avatar: profile._json.avatar,
       avatarMedium: profile._json.avatarmedium,
       avatarFull: profile._json.avatarfull,
+      personaState: profile._json.personastate
     }
 
     try{
       let user = await User.findOne({ steamId: profile.id })
       if (user) {
+        
         done(null, user)
       } else {
         user = await User.create(newUser)
@@ -37,14 +39,9 @@ passport.use(new SteamStrategy({
 
 
 passport.serializeUser((user, done) => {
-  console.log(user)
+  // console.log(user)
   done(null, user.id);
 })
-
-// passport.deserializeUser((user, done) => {
-//   console.log(user)
-//   done(null, user._id)
-// })
 
 passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => done(err, user))

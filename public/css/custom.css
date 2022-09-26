@@ -1,0 +1,6 @@
+/* Dashboard Current Status */
+
+.statusContainer{
+    display: flex;
+    flex-direction: row;
+}

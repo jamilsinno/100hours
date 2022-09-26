@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
@@ -8,6 +8,9 @@ const UserSchema = new mongoose.Schema({
   avatar: {type: String},
   avatarMedium: {type: String},
   avatarFull: {type: String},
+  personaState: {type: Number},
+  gameCount: {type: Number},
+  games: [Object],
 })
 
 

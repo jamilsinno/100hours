@@ -10,6 +10,7 @@ const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const todoRoutes = require('./routes/todos')
 const steamRoutes = require('./routes/steam')
+const dashboardRoutes = require('./routes/dashboard')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -41,6 +42,7 @@ app.use(passport.session())
 app.use(flash())
   
 app.use('/', mainRoutes)
+app.use('/dashboard', dashboardRoutes)
 app.use('/todos', todoRoutes)
 app.use('/auth/steam', steamRoutes)
  
