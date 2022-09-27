@@ -8,9 +8,10 @@ const flash = require('express-flash')
 const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
-const todoRoutes = require('./routes/todos')
 const steamRoutes = require('./routes/steam')
 const dashboardRoutes = require('./routes/dashboard')
+const gamesRoutes = require('./routes/games')
+const todoRoutes = require('./routes/todos')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -40,11 +41,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-  
+
+// Routes
 app.use('/', mainRoutes)
-app.use('/dashboard', dashboardRoutes)
-app.use('/todos', todoRoutes)
 app.use('/auth/steam', steamRoutes)
+app.use('/dashboard', dashboardRoutes)
+app.use('/games', gamesRoutes)
+app.use('/todos', todoRoutes)
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')

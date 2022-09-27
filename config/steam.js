@@ -19,7 +19,7 @@ passport.use(new SteamStrategy({
       avatar: profile._json.avatar,
       avatarMedium: profile._json.avatarmedium,
       avatarFull: profile._json.avatarfull,
-      personaState: profile._json.personastate
+      personaState: profile._json.personastate,
     }
 
     try{

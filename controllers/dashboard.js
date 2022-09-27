@@ -14,17 +14,22 @@ module.exports = {
         const playerStatejson = await playerState.json()
 
         // Update list of games
-        const playerOwnedGames = await fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${req.user.steamId}`)
+        const playerOwnedGames = await fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?appid=440&key=${process.env.STEAM_API_KEY}&steamid=${req.user.steamId}&include_appinfo=true&include_played_free_games=true`)
         const playerOwnedGamesjson = await playerOwnedGames.json()
+
+        // Recently Played
+        const recentlyPlayed = await fetch(`http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${req.user.steamId}`)
+        const recentlyPlayedjson = await recentlyPlayed.json()
 
         // Update the user with the new information
         await User.updateOne({"steamId": req.user.steamId}, {
             $set: {
                 personaState: playerStatejson.response.players[0].personastate,
                 gameCount: playerOwnedGamesjson.response.game_count,
-                games: playerOwnedGamesjson.response.games
+                games: playerOwnedGamesjson.response.games,
+                recentlyPlayed: recentlyPlayedjson.response.games,
             }
         })
-        next()
+        res.redirect(`/dashboard/${req.user.steamId}`)
     }
 }

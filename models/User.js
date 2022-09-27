@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   personaState: {type: Number},
   gameCount: {type: Number},
   games: [Object],
+  recentlyPlayed: [Object],
 })
 
 

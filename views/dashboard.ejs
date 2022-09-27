@@ -11,31 +11,49 @@
 <body>
     <%- include('partials/header') %>
 
-    <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content flex-col lg:flex-row">
-          <img src="<%= user.avatarFull %>" class="max-w-sm rounded-lg shadow-2xl" />
-          <div>
-            <h1 class="text-5xl font-bold">Welcome to your dashboard, <%= user.displayName %>!</h1>
-            <h4 class="text-2xl font-bold">Current status:</h4>
-            <% if ( user.personaState === 0) { %>
-                <section class="statusContainer">
-                    <p>Offline</p>
-                </section>
-            <% } else { %>
-                <section class="statusContainer">
-                    <p>Online</p>
-                </section>
-            <% } %>
-            <h4 class="text-2xl font-bold">Total Games Owned:</h4>
-            <p><%= user.gameCount %></p>
-            <a href="<%= user.profileURL %>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit Steam Page <img src="/images/steam.svg"/></a>
-          </div>
+    <div class="hero min-h-fit bg-base-200">
+      <div class="hero-content flex-col ">
+        <img src="<%= user.avatarFull %>" class="max-w-sm rounded-lg shadow-2xl" />
+        <div>
+          <h1 class="text-5xl font-bold">Welcome to your dashboard, <%= user.displayName %>!</h1>
+          <h4 class="text-2xl font-bold">Current status:</h4>
+          <% if ( user.personaState === 0) { %>
+              <section class="statusContainer">
+                  <p class="text-lg">Offline</p>
+              </section>
+          <% } else { %>
+              <section class="statusContainer">
+                  <p class="text-lg">Online</p>
+              </section>
+          <% } %>
+          <h4 class="text-2xl font-bold">Total Games Owned:</h4>
+          <p class="text-lg"><%= user.gameCount %></p>
         </div>
+        <section>
+          <a href="/games/<%= user.steamId %>" class="btn btn-primary">View Game Library</a>
+          <a href="/dashboard/<%= user.steamId %>/refresh" class="btn btn-primary">Refresh status</a>
+          <a href="<%= user.profileURL %>" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit Steam Page<img src="/images/steam.svg"/></a>
+        </section>
       </div>
-      <div>
-        <% for (let i = 0; i<user.games; i++) {%>
-            <p><%= user.games[i] %></p>
-        <% } %>
-      </div>
-</body>
-</html>
+    </div>
+    <section class="hero min-h-fit bg-base-200">
+      <section class="hero-content flex-col">
+        <h2 class="text-3xl font-bold">Games played in last 2 weeks</h2>
+        <section class="flex flex-row flex-wrap justify-center gap-5">
+          <% for (let i = 0; i<user.recentlyPlayed.length; i++) { %>
+            <div class="card card-bordered bg-base-100 shrink-0 shadow-xl">
+              <div class="card-body min-w-min max-w-xs">
+                <figure class="h-fit"><img src="http://media.steampowered.com/steamcommunity/public/images/apps/<%= user.recentlyPlayed[i].appid %>/<%= user.recentlyPlayed[i].img_icon_url %>.jpg" alt="Most recently played game"/></figure>
+                <h2 class="card-title font-bold text-2xl"><%= user.recentlyPlayed[i].name %></h2>
+                <p class="font-bold">Hours played in last two weeks:</p><p> <%= (user.recentlyPlayed[i].playtime_2weeks / 60).toFixed(2) %> hours</p>
+                <p class="font-bold">Hours played forever:</p><p><%= (user.recentlyPlayed[i].playtime_forever / 60).toFixed(2) %> hours</p>
+                <div class="card-actions justify-center">
+                  <a class="btn btn-primary" href="/games/<%= user.steamId %>/<%= user.recentlyPlayed[i].appid %>">Game Page</a>
+                </div>
+              </div>
+            </div>
+          <% } %>
+        </section>
+      </section>
+    </section>
+    <%- include('partials/footer') %>
