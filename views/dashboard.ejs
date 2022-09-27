@@ -49,6 +49,7 @@
                 <p class="font-bold">Hours played forever:</p><p><%= (user.recentlyPlayed[i].playtime_forever / 60).toFixed(2) %> hours</p>
                 <div class="card-actions justify-center">
                   <a class="btn btn-primary" href="/games/<%= user.steamId %>/<%= user.recentlyPlayed[i].appid %>">Game Page</a>
+                  <a class="btn btn-primary" href="https://store.steampowered.com/app/<%= user.recentlyPlayed[i].appid %>" target="_blank" rel="noopener noreferrer">Steam Page<img src="/images/steam.svg"/></a>
                 </div>
               </div>
             </div>

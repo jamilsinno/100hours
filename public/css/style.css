@@ -2853,8 +2853,8 @@ html {
   min-height: fit-content;
 }
 
-.min-h-screen {
-  min-height: 100vh;
+.min-h-\[90vh\] {
+  min-height: 90vh;
 }
 
 .w-10 {
