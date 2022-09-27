@@ -21,8 +21,12 @@
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">Create Your VERY OWN Steam Completion List!</h1>
             <p class="py-6">Login to your Steam profile, track your games, see your achievements and select what to achieve next!</p>
-            <!-- <button class="btn btn-primary">Get Started</button> -->
-            <a href="/auth/steam" class="btn btn-ghost"><img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_01.png" alt="Steam login"></a>
+            <section class="hero-content flex-col">
+              <% if ( user !== undefined) { %>
+                <a href="./dashboard/<%= user.steamId %>" class="btn btn-primary">Go To Dashboard</a>
+              <% } %>
+              <a href="/auth/steam" class="btn btn-ghost"><img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_01.png" alt="Steam login"></a>
+            </section>
           </div>
         </div>
       </div>
