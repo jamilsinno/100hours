@@ -2,7 +2,11 @@
 module.exports = {
     content: ["./views/*.ejs", "./public/css/tailwind.css", "./views/partials/*.ejs"],
     theme: {
-      extend: {},
+      extend: {
+        spacing: {
+          '92vh': '92vh',
+        }
+      },
     },
     plugins: [require("daisyui")],
   }
