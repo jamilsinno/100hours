@@ -1,27 +1,24 @@
-const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('span.not')
-const todoComplete = document.querySelectorAll('span.completed')
+const markComplete = document.querySelectorAll('.incomplete')
+const markIncomplete = document.querySelectorAll('.complete')
 
-Array.from(deleteBtn).forEach((el)=>{
-    el.addEventListener('click', deleteTodo)
+Array.from(markComplete).forEach((el)=>{
+    el.addEventListener('click', markCompleteTodo)
 })
 
-Array.from(todoItem).forEach((el)=>{
-    el.addEventListener('click', markComplete)
+Array.from(markIncomplete).forEach((el)=>{
+    el.addEventListener('click', markIncompleteTodo)
 })
 
-Array.from(todoComplete).forEach((el)=>{
-    el.addEventListener('click', markIncomplete)
-})
+async function markCompleteTodo() {
+    const todoId = this.getAttribute('data-id')
 
-async function deleteTodo(){
-    const todoId = this.parentNode.dataset.id
+    console.log(todoId)
     try{
-        const response = await fetch('todos/deleteTodo', {
-            method: 'delete',
+        const response = await fetch('/games/markComplete', {
+            method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'todoIdFromJSFile': todoId,
             })
         })
         const data = await response.json()
@@ -32,32 +29,16 @@ async function deleteTodo(){
     }
 }
 
-async function markComplete(){
-    const todoId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('todos/markComplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
+async function markIncompleteTodo() {
+    const todoId = this.getAttribute('data-id')
 
-async function markIncomplete(){
-    const todoId = this.parentNode.dataset.id
+    console.log(todoId)
     try{
-        const response = await fetch('todos/markIncomplete', {
+        const response = await fetch('/games/markIncomplete', {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'todoIdFromJSFile': todoId,
             })
         })
         const data = await response.json()
