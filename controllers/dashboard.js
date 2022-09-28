@@ -30,6 +30,7 @@ module.exports = {
                 recentlyPlayed: recentlyPlayedjson.response.games,
             }
         })
+        console.log(`${req.user.steamId} updated`)
         res.redirect(`/dashboard/${req.user.steamId}`)
     }
 }

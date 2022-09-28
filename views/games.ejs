@@ -10,6 +10,51 @@
 </head>
 <body>
     <%- include('partials/header') %>
+    <div class="overflow-x-auto w-full">
+        <table class="table w-full">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th>Favourite</th>
+              <th>Game</th>
+              <th>Total Hours Played</th>
+              <th>Achievements</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- row 1 -->
+            <% user.games = user.games.sort( (a,b) => b.playtime_forever - a.playtime_forever)
+            for (let i = 0; i < user.games.length; i++) { %>
+                <tr>
+                    <th>
+                        <label>
+                        <input type="checkbox" class="checkbox" />
+                        </label>
+                    </th>
 
-    <p>this is the games page</p>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                        <div class="avatar">
+                            <div class="mask mask-squircle w-12 h-12">
+                                <img src="http://media.steampowered.com/steamcommunity/public/images/apps/<%= user.games[i].appid %>/<%= user.games[i].img_icon_url %>.jpg" alt="<%= user.games[i].name %> steam icon" />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="font-bold"><%= user.games[i].name %></div>
+                        </div>
+                        </div>
+                    </td>
+                    <td>
+                        <%= (user.games[i].playtime_forever / 60).toFixed(2) %> hours
+                    </td>
+                    <!-- <td>Purple</td> -->
+                    <th>
+                        <a href="/games/<%= user.steamId %>/<%= user.games[i].appid %>" class="btn btn-ghost btn-xs">To do list</a>
+                    </th>
+                </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     <%- include('partials/footer') %>

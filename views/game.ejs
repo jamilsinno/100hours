@@ -11,5 +11,46 @@
 <body>
     <%- include('partials/header') %>
 
-    <p>this is the single game page belonging to <%= user.displayName %> game <%= game.name %></p>
+    <div class="card lg:card-side bg-base-100 shadow-xl">
+        <figure><img src="http://media.steampowered.com/steamcommunity/public/images/apps/<%= game.appid %>/<%= game.img_icon_url %>.jpg" alt="<%= game.name %> steam icon"/></figure>
+        <div class="card-body">
+            <h2 class="card-title"><%= game.name %></h2>
+            <p>Add your to do</p>
+            <div>
+              <form action="/games/<%= user.steamId %>/<%= game.appid %>/createTodo" method="POST">
+                <textarea type="text" placeholder="Enter Todo Item" name='todoItem' rows="4" cols="50" class="input input-bordered"></textarea>
+                <input class="btn btn-primary" type="submit">
+              </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="table w-full">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th></th>
+              <th>Todo</th>
+              <th></th>
+              <th>Favorite Color</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- row 1 -->
+            <% for (let i = 0; i<todos.length; i++) {%>
+            <tr class="hover">
+              <th><%= i %></th>
+              <td><%= todos[i].todo %></td>
+              <% if (todos[i].completed) {%>
+                <td class="complete" data-id="<%= todos[i]._id %>">Completed</td>
+              <% } else {%>
+                <td class="incomplete" data-id="<%= todos[i]._id %>">Incomplete</td>
+              <% } %>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      
     <%- include('partials/footer') %>

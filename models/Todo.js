@@ -7,11 +7,15 @@ const TodoSchema = new mongoose.Schema({
   },
   completed: {
     type: Boolean,
-    required: true,
+    required: true
   },
   userId: {
     type: String,
-    required: true
+    required: true,
+  },
+  appId: {
+    type: String,
+    required: true,
   }
 })
 
