@@ -24,7 +24,7 @@
           </thead>
           <tbody>
             <!-- row 1 -->
-            <% user.games = user.games.sort( (a,b) => b.playtime_forever - a.playtime_forever)
+            <% user.games = user.games.sort( (a,b) => a.name.localeCompare(b.name))
             for (let i = 0; i < user.games.length; i++) { %>
                 <tr>
                     <th>

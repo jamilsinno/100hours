@@ -30,9 +30,9 @@
           <!-- head -->
           <thead>
             <tr>
-              <th></th>
+              <th>Todo item</th>
               <th>Todo</th>
-              <th></th>
+              <th>Status</th>
               <th>Favorite Color</th>
             </tr>
           </thead>
@@ -43,10 +43,11 @@
               <th><%= i %></th>
               <td><%= todos[i].todo %></td>
               <% if (todos[i].completed) {%>
-                <td class="complete" data-id="<%= todos[i]._id %>">Completed</td>
+                <td class="complete cursor-pointer" data-id="<%= todos[i]._id %>"><a class="btn btn-success">Complete</a></td>
               <% } else {%>
-                <td class="incomplete" data-id="<%= todos[i]._id %>">Incomplete</td>
+                <td class="incomplete cursor-pointer" data-id="<%= todos[i]._id %>"><a class="btn btn-error">Incomplete</a></td>
               <% } %>
+              <td class="delete cursor-pointer">Delete</td>
             </tr>
             <% } %>
           </tbody>
