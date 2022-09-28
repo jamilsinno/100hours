@@ -10,13 +10,13 @@ module.exports = {
         // console.log(req.user.games.filter( el => el.appid == req.params.appId))
 
         const todos = await Todo.find({userId: req.params.steamId, appId: req.params.appId})
-        console.log(todos)
+        // console.log(todos)
         res.render(`game.ejs`, {user: req.user, game: req.user.games.filter( el => el.appid == req.params.appId)[0], todos: todos})
     },
     createTodo : async (req, res) => {
         try {
-            console.log(req.body)
-            console.log(req.user.games.filter( el => el.appid == req.params.appId)[0])
+            // console.log(req.body)
+            // console.log(req.user.games.filter( el => el.appid == req.params.appId)[0])
 
             //create the todo object
             const newTodo = new Todo({
@@ -56,4 +56,15 @@ module.exports = {
             console.log(err)
         }
     },
+    deleteTodo : async (req,res) => {
+        console.log(req)
+        try{
+            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
+            console.log('Deleted Todo')
+            res.json('Deleted It')
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
 }
