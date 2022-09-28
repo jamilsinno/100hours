@@ -11,7 +11,7 @@
 <body>
     <%- include('partials/header') %>
     <div class="overflow-x-auto w-full">
-        <table class="table w-full">
+        <table class="table table-zebra w-full">
           <!-- head -->
           <thead>
             <tr>
@@ -48,9 +48,8 @@
                     <td>
                         <%= (user.games[i].playtime_forever / 60).toFixed(2) %> hours
                     </td>
-                    <!-- <td>Purple</td> -->
                     <th>
-                        <a href="/games/<%= user.steamId %>/<%= user.games[i].appid %>" class="btn btn-ghost btn-xs">To do list</a>
+                        <a href="/games/<%= user.steamId %>/<%= user.games[i].appid %>" class="btn btn-ghost ">To do list</a>
                     </th>
                 </tr>
             <% } %>

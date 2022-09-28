@@ -12,14 +12,18 @@
     <%- include('partials/header') %>
 
     <div class="card lg:card-side bg-base-100 shadow-xl">
-        <figure><img src="http://media.steampowered.com/steamcommunity/public/images/apps/<%= game.appid %>/<%= game.img_icon_url %>.jpg" alt="<%= game.name %> steam icon"/></figure>
+        <div class="avatar flex flex-col items-center">
+          <div class="mask mask-squircle w-12 h-12">
+              <img src="http://media.steampowered.com/steamcommunity/public/images/apps/<%= game.appid %>/<%= game.img_icon_url %>.jpg" alt="<%= game.name %> steam icon" />
+          </div>
+          <h2 class="card-title"><%= game.name %></h2>
+        </div>
         <div class="card-body">
-            <h2 class="card-title"><%= game.name %></h2>
-            <p>Add your to do</p>
+            <p class="font-bold text-2xl">Add your to do</p>
             <div>
               <form action="/games/<%= user.steamId %>/<%= game.appid %>/createTodo" method="POST">
                 <textarea type="text" placeholder="Enter Todo Item" name='todoItem' rows="4" cols="50" class="input input-bordered"></textarea>
-                <input class="btn btn-primary" type="submit">
+                <input class="btn btn-primary align-bottom" type="submit">
               </form>
             </div>
         </div>

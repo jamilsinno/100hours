@@ -5,8 +5,8 @@ module.exports = {
         res.render('games.ejs', {user: req.user})
     },
     getGameInfo : async (req, res) => {
-        // console.log(req.user.games)
-        // console.log(req.params.appId)
+        console.log(req.user.games)
+        console.log(req.params.appId)
         // console.log(req.user.games.filter( el => el.appid == req.params.appId))
 
         const todos = await Todo.find({userId: req.params.steamId, appId: req.params.appId})
