@@ -27,6 +27,10 @@ Once to dos are added, can indicate completion through a simple click, and delet
 
 Began building the application using EJS. Styling with CSS became a time consuming and demanding process. Started exploring the use of Tailwind CSS and DaisyUI to ease the front-end design decision making.
 
+## To start:
+
+Prior to hosting, you will need to run npm start && npm run dev in 2 different terminals and use http://localhost:2121 to access the application.
+
 ## Dependencies:
 @node-rs/bcrypt: 1.6.1,
 axios: 0.27.2,
