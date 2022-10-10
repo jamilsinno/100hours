@@ -15,6 +15,7 @@ The project is a Full Stack application built using JavaScript and Node.js. Logi
 Once to dos are added, can indicate completion through a simple click, and deleting the todo.
 
 ## Optimizations
+ - Host the project
  - Add a sort function for games based on user input
  - Add completion of achievements. Colored vs gray-scale to indicate completion of achievement.
  - Favorite to dos
@@ -25,3 +26,27 @@ Once to dos are added, can indicate completion through a simple click, and delet
 ## Lessons Learned:
 
 Began building the application using EJS. Styling with CSS became a time consuming and demanding process. Started exploring the use of Tailwind CSS and DaisyUI to ease the front-end design decision making.
+
+## Dependencies:
+@node-rs/bcrypt: 1.6.1,
+axios: 0.27.2,
+bcrypt: 5.0.1,
+connect-mongo: 3.2.0,
+daisyui: 2.31.0,
+dotenv: 8.2.0,
+ejs: 3.1.6,
+express: 4.17.1,
+express-flash: 0.0.2,
+express-session: 1.17.1,
+mongodb: 3.6.5,
+mongoose: 5.12.3,
+morgan: 1.10.0,
+node-fetch: 2.6.7,
+node-quickbooks: 2.0.39,
+node-steam-openid: 1.0.1,
+nodemon: 2.0.7,
+passport: 0.6.0,
+passport-local: 1.0.0,
+passport-openid: 0.4.0,
+passport-steam: 1.0.17,
+validator: 13.6.0
