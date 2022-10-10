@@ -12,6 +12,8 @@ The No Steam Game Left Behind application use your steam profile to pull games a
 
 The project is a Full Stack application built using JavaScript and Node.js. Login is through Steam using the Passport.js Steam profile. Styling used for the front end is provided from Tailwind and Daisy UI. 
 
+Once to dos are added, you can indicate completion in each game page.
+
 ## Optimizations
  - Add a sort function for games based on user input
  - Add completion of achievements. Colored vs gray-scale to indicate completion of achievement.
@@ -22,4 +24,4 @@ The project is a Full Stack application built using JavaScript and Node.js. Logi
 
 ## Lessons Learned:
 
-Began building the application using EJS. Styling with CSS became a time consuming and demanding process. Started exploring the use of Tailwind CSS and DaisyUI to ease the front-end design decision making.
+Began building the application using EJS. Styling with CSS became a time consuming and demanding process. Started exploring the use of Tailwind CSS and DaisyUI to ease the front-end design decision making. 
