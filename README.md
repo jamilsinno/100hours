@@ -1,44 +1,25 @@
-# Introduction
+# My Awesome Project
+The No Steam Game Left Behind application use your steam profile to pull games and their respective achievements. You can then access the games individually and add a to do list to each game.
 
-A Simple ToDo App is built using the MVC Architecture, we have also implemented "authorization" so folx can sign up, customize & personalize the app 
+**Link to project:** https://github.com/jamilsinno/100hours
 
----
+![Login page](/public/images/Login.png)
+![Dashboard Page](/public/images/Dashboard.png)
 
-> Be sure to add that lovely star 😀 and fork it for your own copy
+## How It's Made:
 
----
+**Tech used:** HTML, CSS, JavaScript, EJS, Node.js, Express, Passport.js, Tailwind CSS, Daisy UI, MongoDB
 
-# Objectives
+The project is a Full Stack application built using JavaScript and Node.js. Login is through Steam using the Passport.js Steam profile. Styling used for the front end is provided from Tailwind and Daisy UI. 
 
-- It's a beginner level app created to understand how MVC concept and logins are added
+## Optimizations
+ - Add a sort function for games based on user input
+ - Add completion of achievements. Colored vs gray-scale to indicate completion of achievement.
+ - Favorite to dos
+ - Favorite games
+ - Import friends list
+ - Indicate private vs public status from Steam 
 
----
+## Lessons Learned:
 
-# Who is this for? 
-
-- It's for beginners & intermediates with little more experience, to help understand the various aspects of building a node app with some complex features
-
----
-
-# Packages/Dependencies used 
-
-bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
-
----
-
-# Install all the dependencies or node packages used for development via Terminal
-
-`npm install` 
-
----
-
-# Things to add
-
-- Create a `.env` file and add the following as `key: value` 
-  - PORT: 2121 (can be any port example: 3000) 
-  - DB_STRING: `your database URI` 
- ---
- 
- Have fun testing and improving it! 😎
-
-
+Began building the application using EJS. Styling with CSS became a time consuming and demanding process. Started exploring the use of Tailwind CSS and DaisyUI to ease the front-end design decision making.
