@@ -29,28 +29,39 @@ Began building the application using EJS. Styling with CSS became a time consumi
 
 ## To start:
 
-Prior to hosting, you will need to run npm start && npm run dev in 2 different terminals and use http://localhost:2121 to access the application.
+Prior to hosting, you will need to `run npm start && npm run dev` in 2 different terminals and use http://localhost:2121 to access the application.
+
+Create a .env file in your config folder with the following variables:
+
+```
+PORT =
+DB_STRING =
+STEAM_API_KEY =
+BASE_URL =
+```
+
+You will need your own Steam API key to instert to `STEAM_API_KEY` and a MongoDB instance to add to `DB_STRING`.
 
 ## Dependencies:
-@node-rs/bcrypt: 1.6.1,
-axios: 0.27.2,
-bcrypt: 5.0.1,
-connect-mongo: 3.2.0,
-daisyui: 2.31.0,
-dotenv: 8.2.0,
-ejs: 3.1.6,
-express: 4.17.1,
-express-flash: 0.0.2,
-express-session: 1.17.1,
-mongodb: 3.6.5,
-mongoose: 5.12.3,
-morgan: 1.10.0,
-node-fetch: 2.6.7,
-node-quickbooks: 2.0.39,
-node-steam-openid: 1.0.1,
-nodemon: 2.0.7,
-passport: 0.6.0,
-passport-local: 1.0.0,
-passport-openid: 0.4.0,
-passport-steam: 1.0.17,
-validator: 13.6.0
+@node-rs/bcrypt: 1.6.1,  
+axios: 0.27.2,  
+bcrypt: 5.0.1,  
+connect-mongo: 3.2.0,  
+daisyui: 2.31.0,  
+dotenv: 8.2.0,  
+ejs: 3.1.6,  
+express: 4.17.1,  
+express-flash: 0.0.2,  
+express-session: 1.17.1,  
+mongodb: 3.6.5,  
+mongoose: 5.12.3,  
+morgan: 1.10.0,  
+node-fetch: 2.6.7,  
+node-quickbooks: 2.0.39,  
+node-steam-openid: 1.0.1,  
+nodemon: 2.0.7,  
+passport: 0.6.0,  
+passport-local: 1.0.0,  
+passport-openid: 0.4.0,  
+passport-steam: 1.0.17,  
+validator: 13.6.0  
