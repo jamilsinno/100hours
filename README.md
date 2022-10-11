@@ -40,7 +40,7 @@ STEAM_API_KEY =
 BASE_URL =
 ```
 
-You will need your own Steam API key to instert to `STEAM_API_KEY` and a MongoDB instance to add to `DB_STRING`.
+You will need your own Steam API key to instert to `STEAM_API_KEY` and a MongoDB instance to add to `DB_STRING`. `BASE_URL` is where you are hosting - currently http://localhost:2121.
 
 ## Dependencies:
 @node-rs/bcrypt: 1.6.1,  
