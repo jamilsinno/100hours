@@ -65,3 +65,6 @@ passport-local: 1.0.0,
 passport-openid: 0.4.0,  
 passport-steam: 1.0.17,  
 validator: 13.6.0  
+
+# Dev Dependencies:  
+tailwindcss": 3.1.8
