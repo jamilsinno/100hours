@@ -67,4 +67,4 @@ passport-steam: 1.0.17,
 validator: 13.6.0  
 
 ### Dev Dependencies:  
-tailwindcss": 3.1.8
+tailwindcss: 3.1.8
